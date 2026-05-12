@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tg-site-collector"
+version = "0.1.0"
+description = "Multi-tenant site contact scraper · Temporal workflow + Tavily search + Playwright nav-expand + Telegram trigger"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [{ name = "yifan1119" }]
+keywords = ["temporal", "scraper", "telegram-bot", "tavily", "playwright", "multi-tenant"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+
+dependencies = [
+    "temporalio>=1.7",
+    "httpx>=0.27",
+    "playwright>=1.45",
+    "python-telegram-bot>=21.0",
+    "tavily-python>=0.4",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "tldextract>=5.1",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[project.urls]
+Repository = "https://github.com/yifan1119/tg-site-collector"
+Issues = "https://github.com/yifan1119/tg-site-collector/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tg_site_collector"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = false
